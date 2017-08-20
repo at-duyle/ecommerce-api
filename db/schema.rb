@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(version: 20170818044040) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "username"
-    t.string "password"
+    t.string "password_digest"
     t.string "email"
     t.string "name"
     t.integer "gender"
@@ -125,7 +125,7 @@ ActiveRecord::Schema.define(version: 20170818044040) do
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "username"
-    t.string "password"
+    t.string "password_digest"
     t.string "email"
     t.string "name"
     t.integer "gender"
