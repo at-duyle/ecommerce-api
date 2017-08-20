@@ -1,4 +1,6 @@
 class Admin < ApplicationRecord
+  has_secure_password
+
   # setup self_join for table admin.
   # we can retieve @admin.partner and @admin.manager
   has_many :partner, class_name: 'Admin', foreign_key: 'manager_id'
