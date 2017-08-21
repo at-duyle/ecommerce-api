@@ -1,14 +1,19 @@
 class UsersController < ApplicationController
   def current
-    render json: current_user
+    user = current_user
+    if user
+      render json: current_user, serializer: Users::CurrentUserSerializer, adapter: :json, root: 'user'
+    else
+      render json: { errors: 'User not found!' }, status: 401
+    end
   end
-  
+
   def create
     user = User.create(user_params)
     if user.errors.blank?
       render json: user, serializer: Users::ShowUserSerializer, adapter: :json, root: 'user'
     else
-      errors = { errors: user.errors.messages }
+      errors = { errors: user.errors.full_messages }
       render json: errors, status: 401
     end
   end
