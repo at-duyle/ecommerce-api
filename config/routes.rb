@@ -6,4 +6,5 @@ Rails.application.routes.draw do
       get 'current'
     end
   end
+  resources :categories, only: %i[index]
 end

@@ -2,13 +2,13 @@ class UsersController < ApplicationController
   def current
     render json: current_user
   end
-  
+
   def create
     user = User.create(user_params)
     if user.errors.blank?
       render json: user, serializer: Users::ShowUserSerializer, adapter: :json, root: 'user'
     else
-      errors = { errors: user.errors.messages }
+      errors = { errors: user.errors.full_messages }
       render json: errors, status: 401
     end
   end
