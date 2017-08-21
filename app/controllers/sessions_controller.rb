@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    user = User.find_by(id: params[:id])
+    user = User.find_by(auth_token: params[:auth_token])
     if !user
       error = { error: { message: 'User not found', status: 404 } }
       render json: error
