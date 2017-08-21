@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+  def current
+    render json: current_user
+  end
+  
   def create
     user = User.create(user_params)
     if user.errors.blank?
