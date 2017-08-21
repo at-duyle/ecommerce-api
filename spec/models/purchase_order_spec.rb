@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: purchase_orders
+#
+#  id         :integer          not null, primary key
+#  supplier   :string(255)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 require 'rails_helper'
 
 RSpec.describe PurchaseOrder, type: :model do
