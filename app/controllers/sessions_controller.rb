@@ -20,9 +20,6 @@ class SessionsController < ApplicationController
       if user.update_columns(auth_token: nil)
         logout
         render json: { message: 'Logout sucessfully' }
-      else
-        error = { error: { message: 'Please come back later!' } }
-        render json: error, status: 500
       end
     else
       error = { error: { message: 'Please login' } }
