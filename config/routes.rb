@@ -11,4 +11,5 @@ Rails.application.routes.draw do
       post 'products'
     end
   end
+  resources :products
 end
