@@ -12,12 +12,9 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    user = User.find_by(auth_token: params[:auth_token])
-    if !user
-      error = { errors: 'User not found!' }
-      render json: error, status: 404
-    elsif login?
-      if user.update_columns(auth_token: nil)
+    binding.pry
+    if login?
+      if current_user.update_columns(auth_token: nil)
         logout
         render json: { message: 'Logout sucessfully!' }
       end

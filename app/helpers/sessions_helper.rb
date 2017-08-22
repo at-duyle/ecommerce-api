@@ -1,7 +1,7 @@
 module SessionsHelper
   def login?
-    return false if @current_user.blank?
-    true
+    return true if @current_user.blank?
+    false
   end
 
   def current_user
