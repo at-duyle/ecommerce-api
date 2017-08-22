@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170822042022) do
+ActiveRecord::Schema.define(version: 20170822110023) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "username"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20170822042022) do
     t.bigint "manager_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "available", default: true
     t.index ["manager_id"], name: "index_admins_on_manager_id"
   end
 
@@ -55,6 +56,7 @@ ActiveRecord::Schema.define(version: 20170822042022) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
+    t.integer "status", default: 0
     t.index ["slug"], name: "index_delivery_orders_on_slug", unique: true
     t.index ["user_id"], name: "index_delivery_orders_on_user_id"
   end
@@ -79,6 +81,7 @@ ActiveRecord::Schema.define(version: 20170822042022) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
+    t.boolean "available", default: true
     t.index ["categorical_type", "categorical_id"], name: "index_products_on_categorical_type_and_categorical_id"
     t.index ["shop_id"], name: "index_products_on_shop_id"
     t.index ["slug"], name: "index_products_on_slug", unique: true
@@ -108,6 +111,7 @@ ActiveRecord::Schema.define(version: 20170822042022) do
     t.string "supplier"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "available", default: true
   end
 
   create_table "shops", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -119,6 +123,7 @@ ActiveRecord::Schema.define(version: 20170822042022) do
     t.bigint "admin_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "available", default: true
     t.index ["admin_id"], name: "index_shops_on_admin_id"
   end
 
@@ -147,6 +152,7 @@ ActiveRecord::Schema.define(version: 20170822042022) do
     t.string "reset_token"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "available", default: true
   end
 
   add_foreign_key "comments", "products"

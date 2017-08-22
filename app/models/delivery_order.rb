@@ -14,4 +14,7 @@ class DeliveryOrder < ApplicationRecord
 
   has_many :products_delivery_orders
   has_many :products, through: :products_delivery_orders
+
+  # ===================Enum==========================
+  enum status: %w[order delivery completed]
 end
