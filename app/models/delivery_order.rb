@@ -9,6 +9,7 @@
 #
 
 class DeliveryOrder < ApplicationRecord
+  # ====================Association=====================
   belongs_to :user
 
   has_many :products_delivery_orders
