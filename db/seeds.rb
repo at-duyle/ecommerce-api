@@ -48,6 +48,7 @@
 # Category.create(name: 'máy tính-laptop')
 # Category.create(name: 'điện thoại')
 # Category.create(name: 'Trẻ em & Đồ chơi')
+# Category.create(name: 'Sức khỏe')
 # puts 'Category'
 
 # SubCategory.create(name: 'Đồ dùng nhà bếp', category_id: 1)
@@ -70,6 +71,9 @@
 # end
 # puts 'Shop'
 
+# category = ['Category', 'SubCategory']
+# puts category[0]
+# puts category[1]
 # 50.times do |i|
 #   Product.create(
 #     name: FFaker::Book.title,
@@ -77,7 +81,8 @@
 #     price: 500000,
 #     description: FFaker::Book.description,
 #     quantity: rand(0..200),
-#     sub_category_id: Category.all.ids[rand(Category.count)],
+#     categorical_type: category[rand(0..1)],
+#     categorical_id: SubCategory.all.ids[rand(SubCategory.count)],
 #     shop_id: Shop.all.ids[rand(Shop.count)])
 # end
 # puts 'Product'

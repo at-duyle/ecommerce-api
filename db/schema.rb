@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170818044040) do
+ActiveRecord::Schema.define(version: 20170822042022) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "username"
@@ -36,6 +36,8 @@ ActiveRecord::Schema.define(version: 20170818044040) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "slug"
+    t.index ["slug"], name: "index_categories_on_slug", unique: true
   end
 
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -52,6 +54,8 @@ ActiveRecord::Schema.define(version: 20170818044040) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "slug"
+    t.index ["slug"], name: "index_delivery_orders_on_slug", unique: true
     t.index ["user_id"], name: "index_delivery_orders_on_user_id"
   end
 
@@ -69,12 +73,15 @@ ActiveRecord::Schema.define(version: 20170818044040) do
     t.float "price", limit: 24
     t.integer "quantity"
     t.text "description"
-    t.bigint "sub_category_id"
+    t.string "categorical_type"
+    t.bigint "categorical_id"
     t.bigint "shop_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "slug"
+    t.index ["categorical_type", "categorical_id"], name: "index_products_on_categorical_type_and_categorical_id"
     t.index ["shop_id"], name: "index_products_on_shop_id"
-    t.index ["sub_category_id"], name: "index_products_on_sub_category_id"
+    t.index ["slug"], name: "index_products_on_slug", unique: true
   end
 
   create_table "products_delivery_orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -120,7 +127,9 @@ ActiveRecord::Schema.define(version: 20170818044040) do
     t.bigint "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "slug"
     t.index ["category_id"], name: "index_sub_categories_on_category_id"
+    t.index ["slug"], name: "index_sub_categories_on_slug", unique: true
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

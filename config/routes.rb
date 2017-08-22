@@ -6,5 +6,9 @@ Rails.application.routes.draw do
       get 'current'
     end
   end
-  resources :categories, only: %i[index]
+  resources :categories, only: %i[index] do
+    collection do
+      post 'products'
+    end
+  end
 end
