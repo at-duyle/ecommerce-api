@@ -6,7 +6,7 @@ class CreateProducts < ActiveRecord::Migration[5.1]
       t.float :price
       t.integer :quantity
       t.text :description
-      t.references :sub_category # , foreign_key: true
+      t.references :categorical, polymorphic: true, index: true
       t.references :shop, foreign_key: true
 
       t.timestamps
