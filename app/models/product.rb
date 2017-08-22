@@ -15,6 +15,8 @@
 #
 
 class Product < ApplicationRecord
+  # =============Association================
+
   has_many :comments
   has_many :users, through: :comments
 
@@ -25,6 +27,6 @@ class Product < ApplicationRecord
   has_many :delivery_orders, through: :products_delivery_orders
 
   has_many :images
-  belongs_to :sub_category
+  belongs_to :categorical, polymorphic: true
   belongs_to :shop
 end
