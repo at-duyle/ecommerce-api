@@ -11,4 +11,9 @@ Rails.application.routes.draw do
       post 'products'
     end
   end
+  resources :shops, only: %i[index] do
+    member do
+      get 'products'
+    end
+  end
 end

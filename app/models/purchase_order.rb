@@ -6,6 +6,7 @@
 #  supplier   :string(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  available  :boolean          default(TRUE)
 #
 
 class PurchaseOrder < ApplicationRecord
