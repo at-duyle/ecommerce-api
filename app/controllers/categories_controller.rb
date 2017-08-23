@@ -10,7 +10,7 @@ class CategoriesController < ApplicationController
   end
 
   def products
-    products = Product.where('categorical_id = ? and categorical_type = ?', params[:id], params[:type])
+    products = Product.where('categorical_id = ? and categorical_type = ? and available = ?', params[:id], params[:type], true)
     if !products.blank?
       render json: products, each_serializer: Products::ProductsSerializer, adapter: :json, root: 'products'
     else
