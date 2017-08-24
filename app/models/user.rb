@@ -36,4 +36,8 @@ class User < ApplicationRecord
   validates :username, :email, uniqueness: true
   validates_confirmation_of :password
   validates_format_of :email, with: /\w+@\w+\.{1}[a-zA-Z]{2,}/
+
+  # ==============Friendly_url================
+  extend FriendlyId
+  friendly_id :username, use: :slugged
 end
