@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170822110023) do
+ActiveRecord::Schema.define(version: 20170824073028) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "username"
@@ -124,7 +124,9 @@ ActiveRecord::Schema.define(version: 20170822110023) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "available", default: true
+    t.string "slug"
     t.index ["admin_id"], name: "index_shops_on_admin_id"
+    t.index ["slug"], name: "index_shops_on_slug", unique: true
   end
 
   create_table "sub_categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -153,6 +155,8 @@ ActiveRecord::Schema.define(version: 20170822110023) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "available", default: true
+    t.string "slug"
+    t.index ["slug"], name: "index_users_on_slug", unique: true
   end
 
   add_foreign_key "comments", "products"

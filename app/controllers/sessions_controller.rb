@@ -12,7 +12,6 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    binding.pry
     if login?
       if current_user.update_columns(auth_token: nil)
         logout
