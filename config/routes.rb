@@ -12,6 +12,6 @@ Rails.application.routes.draw do
     resources :products_shop, only: %i[index]
   end
 
-  resources :products, only: %i[index]
+  resources :products, only: %i[index show]
 
 end
