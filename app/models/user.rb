@@ -39,5 +39,16 @@ class User < ApplicationRecord
 
   # ==============Friendly_url================
   extend FriendlyId
-  friendly_id :username, use: :slugged
+  friendly_id :slug_candidates, use: :slugged
+
+  def slug_candidates
+    [
+      :username,
+      %i[name username]
+    ]
+  end
+
+  def should_generate_new_friendly_id?
+    name_changed? || username_changed?
+  end
 end

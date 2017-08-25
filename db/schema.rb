@@ -55,9 +55,7 @@ ActiveRecord::Schema.define(version: 20170824073028) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "slug"
     t.integer "status", default: 0
-    t.index ["slug"], name: "index_delivery_orders_on_slug", unique: true
     t.index ["user_id"], name: "index_delivery_orders_on_user_id"
   end
 
