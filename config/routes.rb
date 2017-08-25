@@ -13,5 +13,6 @@ Rails.application.routes.draw do
   end
 
   resources :products, only: %i[index show]
+  resources :search, only: %i[index]
 
 end
