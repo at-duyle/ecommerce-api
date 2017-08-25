@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: %i[index update]
+
   def index
-    user = current_user
-    if user
-      render json: current_user, serializer: Users::CurrentUserSerializer
+    if @current_user
+      render json: @current_user, serializer: Users::CurrentUserSerializer
     else
       render json: { errors: 'User not found!' }, status: 401
     end
@@ -18,9 +19,30 @@ class UsersController < ApplicationController
     end
   end
 
+  def update
+    if @current_user
+      if @current_user.update(update_params)
+        render json: current_user, serializer: Users::CurrentUserSerializer
+      else
+        errors = { errors: @current_user.errors.full_messages }
+        render json: errors, status: 401
+      end
+    else
+      render json: { errors: 'User not found!' }, status: 401
+    end
+  end
+
   private
 
-  def user_params
+  def register_params
     params.require(:user).permit(:email, :username, :password, :password_confirmation)
+  end
+
+  def update_params
+    params.require(:user).permit(:name, :email, :username, :gender, :avatar)
+  end
+
+  def set_user
+    @current_user = current_user
   end
 end
