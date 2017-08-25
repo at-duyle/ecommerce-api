@@ -33,9 +33,14 @@ class User < ApplicationRecord
 
   # ================Validates=====================
   validates :username, :email, presence: true
+  validates :password_confirmation, presence: true, on: %i[create update],
+                                    unless: :skip_password_validation
   validates :username, :email, uniqueness: true
   validates_confirmation_of :password
   validates_format_of :email, with: /\w+@\w+\.{1}[a-zA-Z]{2,}/
+
+  # ==============Attr-Accessor===============
+  attr_accessor :skip_password_validation
 
   # ==============Friendly_url================
   extend FriendlyId

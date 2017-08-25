@@ -2,8 +2,13 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :sessions, only: %i[create destroy]
   
-  resources :users
-  
+  resources :users do
+    member do
+      put 'password'
+      patch 'password'
+    end
+  end
+
   resources :categories, only: %i[index] do
     resources :products_category, only: %i[index]
   end

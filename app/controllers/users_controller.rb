@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[index update]
+  before_action :set_user, only: %i[index update password]
 
   def index
     if @current_user
@@ -21,8 +21,23 @@ class UsersController < ApplicationController
 
   def update
     if @current_user
+      @current_user.skip_password_validation = true
       if @current_user.update(update_params)
         render json: current_user, serializer: Users::CurrentUserSerializer
+      else
+        errors = { errors: @current_user.errors.full_messages }
+        render json: errors, status: 401
+      end
+    else
+      render json: { errors: 'User not found!' }, status: 401
+    end
+  end
+
+  def password
+    if @current_user
+      if @current_user.update(password: params[:user][:password],
+                              password_confirmation: params[:user][:password_confirmation])
+        render json: { message: 'Update password successfully!' }
       else
         errors = { errors: @current_user.errors.full_messages }
         render json: errors, status: 401
