@@ -40,4 +40,13 @@ class Product < ApplicationRecord
   def should_generate_new_friendly_id?
     name_changed?
   end
+
+  # ==============Scopes================
+  def self.best_seller
+    where(id: ProductsDeliveryOrder.left_joins(:product)
+     .where('products.available = true')
+     .group('products.id')
+     .order('COUNT(products.id) DESC')
+     .select('products.id').take(6), available: true)
+  end
 end
