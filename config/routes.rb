@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   
   resources :products_best_seller, only: %i[index]
 
+  resources :products_newest, only: %i[index]
+
   resources :search, only: %i[index]
 
 end
