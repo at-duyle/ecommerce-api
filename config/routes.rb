@@ -25,4 +25,6 @@ Rails.application.routes.draw do
 
   resources :search, only: %i[index]
 
+  resources :register_password, only: %i[update]
+
 end
