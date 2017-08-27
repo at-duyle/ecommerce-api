@@ -10,9 +10,11 @@ class UsersController < ApplicationController
   end
 
   def create
-    user = User.create(user_params)
+    register_params
+    user = User.create(register_params.merge(confirm_send_at: Time.now,
+                                             confirm_token: SecureRandom.hex(10)))
     if user.errors.blank?
-      render json: user, serializer: Users::ShowUserSerializer, adapter: :json, root: 'user'
+      render json: user, serializer: Users::ShowUserSerializer
     else
       errors = { errors: user.errors.full_messages }
       render json: errors, status: 401
