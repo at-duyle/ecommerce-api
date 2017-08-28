@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       put 'password'
       patch 'password'
     end
+    resources :orders, only: %i[index]
   end
 
   resources :categories, only: %i[index] do
