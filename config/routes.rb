@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     resources :products_category, only: %i[index]
   end
 
-  resources :shops, only: %i[index] do
+  resources :shops, only: %i[index show] do
     resources :products_shop, only: %i[index]
   end
 
