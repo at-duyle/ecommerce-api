@@ -6,7 +6,8 @@ class CreateUsers < ActiveRecord::Migration[5.1]
       t.string :email
       t.string :name
       t.integer :gender
-      t.string :avatar
+      t.string :address
+      t.text :description
       t.string :auth_token
       t.datetime :confirm_send_at
       t.string :confirm_token

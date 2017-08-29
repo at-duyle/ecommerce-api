@@ -6,7 +6,6 @@ class CreateAdmins < ActiveRecord::Migration[5.1]
       t.string :email
       t.string :name
       t.integer :gender
-      t.string :avatar
       t.integer :role, default: 2
       t.string :auth_token
       t.datetime :confirm_send_at

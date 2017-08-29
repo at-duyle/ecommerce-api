@@ -31,8 +31,9 @@ puts 'Admin'
               password: '123456',
               name: FFaker::Name.name,
               email: "#{email}",
-              avatar: FFaker::Avatar.image,
               gender: id,
+              address: FFaker::AddressBR.full_address,
+              description: FFaker::DizzleIpsum.phrases
               auth_token: rand(100000..999999),
               confirm_send_at: Time.now(),
               confirm_at: Time.now(),
@@ -65,6 +66,7 @@ puts 'SubCategory'
     name: FFaker::Company.name,
     address: FFaker::Address.street_address,
     phone_number: FFaker::PhoneNumber.phone_number,
+    log: Faker::Company.logo,
     latitude: 16.069815,
     longitude: 108.207000,
     admin_id: Admin.all.ids[rand(Admin.count)])
