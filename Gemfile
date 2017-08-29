@@ -32,6 +32,7 @@ gem 'active_model_serializers'
 gem 'figaro'
 
 gem 'ffaker'
+
 gem 'faker'
 
 group :development, :test do

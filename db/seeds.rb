@@ -8,10 +8,10 @@
 
 
 20.times do |i|
-  Admin.create(username: FFaker::Internet.user_name,
+  Admin.create(username: Faker::Internet.unique.user_name,
               password: '123456',
-              email: FFaker::Internet.email,
-              name: FFaker::Name.name,
+              email: Faker::Internet.unique.email,
+              name: Faker::Name.name,
               gender: rand(0..2),
               role: rand(0..2),
               auth_token: rand(100000..999999),
@@ -25,10 +25,11 @@ puts 'Admin'
 
 50.times do |i|
   id = rand(0..2)
-  email = FFaker::Internet.email
-  User.create(username: FFaker::Internet.user_name,
+  email = Faker::Internet.email
+  User.create!(username: Faker::Internet.unique.user_name,
               password: '123456',
-              name: FFaker::Name.name,
+              password_confirmation: '123456',
+              name: Faker::Name.name,
               email: "#{email}",
               gender: id,
               address: FFaker::AddressBR.full_address,
@@ -41,8 +42,9 @@ puts 'Admin'
               reset_token: rand(100000..999999))
 end
 
-User.create(username: 'duy.le',
+User.create!(username: 'duy.le',
               password: '123456',
+              password_confirmation: '123456',
               name: 'Lê Ngọc Duy',
               email: 'ngocduy307@gmail.com',
               gender: 0,
