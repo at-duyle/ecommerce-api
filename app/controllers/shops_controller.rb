@@ -6,6 +6,7 @@ class ShopsController < ApplicationController
 
   def show
     shop = Shop.friendly.find(params[:id])
+    binding.pry
     render json: shop, serializer: Shops::ShowShopsSerializer
   rescue
     error = { errors: 'Data not found' }
