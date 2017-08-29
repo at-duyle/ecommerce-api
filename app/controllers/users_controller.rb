@@ -37,12 +37,16 @@ class UsersController < ApplicationController
 
   def password
     if @current_user
-      if @current_user.update(password: params[:user][:password],
-                              password_confirmation: params[:user][:password_confirmation])
-        render json: { message: 'Update password successfully!' }
+      if @current_user.authenticate(params[:user][:old_password])
+        if @current_user.update(password: params[:user][:password],
+                                password_confirmation: params[:user][:password_confirmation])
+          render json: { message: 'Update password successfully!' }
+        else
+          errors = { errors: @current_user.errors.full_messages }
+          render json: errors, status: 401
+        end
       else
-        errors = { errors: @current_user.errors.full_messages }
-        render json: errors, status: 401
+        render json: { errors: 'Incorrect current password' }, status: 401
       end
     else
       render json: { errors: 'User not found!' }, status: 401
