@@ -33,7 +33,7 @@ puts 'Admin'
               email: "#{email}",
               gender: id,
               address: FFaker::AddressBR.full_address,
-              description: FFaker::DizzleIpsum.phrases
+              description: FFaker::DizzleIpsum.phrases,
               auth_token: rand(100000..999999),
               confirm_send_at: Time.now(),
               confirm_at: Time.now(),
@@ -47,7 +47,7 @@ User.create(username: duy.le,
               email: 'ngocduy307@gmail.com',
               gender: 0,
               address: '193 Nguyễn Lương Bằng - Đà Nẵng',
-              description: FFaker::DizzleIpsum.phrases
+              description: FFaker::DizzleIpsum.phrases,
               auth_token: rand(100000..999999),
               confirm_send_at: Time.now(),
               confirm_at: Time.now(),
