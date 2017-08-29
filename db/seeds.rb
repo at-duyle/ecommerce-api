@@ -40,7 +40,8 @@ puts 'Admin'
               reset_send_at: Time.now(),
               reset_token: rand(100000..999999))
 end
-User.create(username: duy.le,
+
+User.create(username: 'duy.le',
               password: '123456',
               name: 'Lê Ngọc Duy',
               email: 'ngocduy307@gmail.com',
