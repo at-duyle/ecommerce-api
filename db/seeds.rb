@@ -25,10 +25,10 @@ puts 'Admin'
 
 50.times do |i|
   id = rand(0..2)
-  email = FFaker::Internet.unique.email
-  User.create(username: FFaker::Internet.unique.user_name,
+  email = FFaker::Internet.email
+  User.create(username: FFaker::Internet.user_name,
               password: '123456',
-              name: FFaker::Name.unique.name,
+              name: FFaker::Name.name,
               email: "#{email}",
               gender: id,
               address: FFaker::AddressBR.full_address,
