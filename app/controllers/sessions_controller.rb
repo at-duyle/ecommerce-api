@@ -3,7 +3,8 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:user][:email])
     if user && user.authenticate(params[:user][:password])
       if user.update_columns(auth_token: SecureRandom.hex(10))
-        render json: user, serializer: Sessions::SessionsSerializer
+        # render json: user, serializer: Sessions::SessionsSerializer
+        render json: user
       end
     else
       error = { errors: 'Invalid email or password!' }
