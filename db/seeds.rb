@@ -41,6 +41,19 @@ puts 'Admin'
               reset_send_at: Time.now(),
               reset_token: rand(100000..999999))
 end
+User.create(username: duy.le,
+              password: '123456',
+              name: 'Lê Ngọc Duy',
+              email: 'ngocduy307@gmail.com',
+              gender: 0,
+              address: '193 Nguyễn Lương Bằng - Đà Nẵng',
+              description: FFaker::DizzleIpsum.phrases
+              auth_token: rand(100000..999999),
+              confirm_send_at: Time.now(),
+              confirm_at: Time.now(),
+              confirm_token: rand(100000..999999),
+              reset_send_at: Time.now(),
+              reset_token: rand(100000..999999))
 puts 'User'
 
 Category.create(name: 'điện gia dụng - điện lạnh')
