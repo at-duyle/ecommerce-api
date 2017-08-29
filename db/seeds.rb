@@ -25,10 +25,10 @@ puts 'Admin'
 
 50.times do |i|
   id = rand(0..2)
-  email = FFaker::Internet.email
-  User.create(username: FFaker::Internet.user_name,
+  email = FFaker::Internet.unique.email
+  User.create(username: FFaker::Internet.unique.user_name,
               password: '123456',
-              name: FFaker::Name.name,
+              name: FFaker::Name.unique.name,
               email: "#{email}",
               gender: id,
               address: FFaker::AddressBR.full_address,
@@ -79,7 +79,7 @@ puts 'SubCategory'
     name: FFaker::Company.name,
     address: FFaker::Address.street_address,
     phone_number: FFaker::PhoneNumber.phone_number,
-    log: Faker::Company.logo,
+    logo: Faker::Company.logo,
     latitude: 16.069815,
     longitude: 108.207000,
     admin_id: Admin.all.ids[rand(Admin.count)])
