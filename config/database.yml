@@ -10,12 +10,11 @@
 #   http://dev.mysql.com/doc/refman/5.7/en/old-client.html
 #
 default: &default
-  adapter: mysql2
-  encoding: utf8
+  adapter: postgresql
+  encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: <%= ENV['MYSQL_USERNAME'] %>
-  password: <%= ENV['MYSQL_PASSWORD'] %>
-  socket: /var/run/mysqld/mysqld.sock
+  username: <%= ENV['POSTGRESQL_USERNAME'] %>
+  password: <%= ENV['POSTGRESQL_PASSWORD'] %>
 
 development:
   <<: *default
@@ -48,7 +47,8 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
-  database: ecommerce-api_production
-  username: ecommerce-api
-  password: <%= ENV['ECOMMERCE-API_DATABASE_PASSWORD'] %>
+  # <<: *default
+  # database: ecommerce-api_production
+  # username: ecommerce-api
+  # password: <%= ENV['ECOMMERCE-API_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
