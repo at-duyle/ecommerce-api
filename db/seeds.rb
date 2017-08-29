@@ -13,7 +13,6 @@
               email: FFaker::Internet.email,
               name: FFaker::Name.name,
               gender: rand(0..2),
-              avatar: FFaker::Avatar.image,
               role: rand(0..2),
               auth_token: rand(100000..999999),
               confirm_send_at: Time.now(),
