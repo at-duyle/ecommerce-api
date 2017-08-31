@@ -1,3 +1,3 @@
 class Users::UserCommentsSerializer < ActiveModel::Serializer
-  attributes :username, :created_at
+  attributes :username
 end

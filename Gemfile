@@ -51,6 +51,7 @@ group :development do
   gem 'annotate'
   gem 'awesome_print'
   gem 'rails-erd', require: false
+  gem 'bullet'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

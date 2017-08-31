@@ -95,7 +95,7 @@ puts category[1]
   Product.create(
     name: FFaker::Book.title,
     producer: FFaker::Company.name,
-    price: 500000,
+    price: rand(10..50),
     description: FFaker::Book.description,
     quantity: rand(0..200),
     categorical_type: category[rand(0..1)],

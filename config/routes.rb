@@ -18,7 +18,9 @@ Rails.application.routes.draw do
     resources :products_shop, only: %i[index]
   end
 
-  resources :products, only: %i[index show]
+  resources :products, only: %i[index show] do
+    resources :comments, only: %i[create]
+  end
   
   resources :products_best_seller, only: %i[index]
 
