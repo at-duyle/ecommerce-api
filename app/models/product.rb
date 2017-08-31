@@ -47,6 +47,6 @@ class Product < ApplicationRecord
      .where('products.available = true')
      .group('products.id')
      .order('COUNT(products.id) DESC')
-     .select('products.id').take(6), available: true)
+     .select('products.id').take(10), available: true)
   end
 end
