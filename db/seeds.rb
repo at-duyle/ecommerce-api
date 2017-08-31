@@ -121,6 +121,7 @@ puts 'Image'
 
 70.times do |i|
   DeliveryOrder.create(
+    total_price: 5000000,
     user_id: User.all.ids[rand(User.count)])
 end
 puts 'DeliveryOrder'

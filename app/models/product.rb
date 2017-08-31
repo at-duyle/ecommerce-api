@@ -30,6 +30,7 @@ class Product < ApplicationRecord
   has_many :delivery_orders, through: :products_delivery_orders
 
   has_many :images
+  has_one :image
   belongs_to :categorical, polymorphic: true
   belongs_to :shop
 
