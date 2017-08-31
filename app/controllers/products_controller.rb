@@ -6,7 +6,7 @@ class ProductsController < ApplicationController
 
   def show
     product = Product.friendly.find(params[:id])
-    render json: product, serializer: Products::ProductsSerializer
+    render json: product, serializer: Products::ShowProductSerializer
   rescue
     error = { errors: 'Data not found' }
     render json: error, status: 404
