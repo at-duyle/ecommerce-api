@@ -14,6 +14,7 @@ class UsersController < ApplicationController
     user = User.create(register_params.merge(confirm_send_at: Time.now,
                                              confirm_token: SecureRandom.hex(10)))
     if user.errors.blank?
+      RegisterMailer.welcome_email(user).deliver_now
       render json: user, serializer: Users::ShowUserSerializer
     else
       errors = { errors: user.errors.full_messages }
