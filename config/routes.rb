@@ -30,4 +30,5 @@ Rails.application.routes.draw do
 
   resources :register_password, only: %i[update]
 
+  resources :reset_password, only: %i[create update]
 end
