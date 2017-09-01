@@ -58,22 +58,29 @@ User.create!(username: 'duy.le',
               reset_token: rand(100000..999999))
 puts 'User'
 
-Category.create(name: 'điện gia dụng - điện lạnh')
-Category.create(name: 'Thời trang - Phụ kiện')
-Category.create(name: 'Tivi - Thiết bị nghe nhìn')
-Category.create(name: 'máy tính-laptop')
-Category.create(name: 'điện thoại')
-Category.create(name: 'Trẻ em & Đồ chơi')
-Category.create(name: 'Sức khỏe')
+# Category.create(name: 'điện gia dụng - điện lạnh')
+# Category.create(name: 'Thời trang - Phụ kiện')
+# Category.create(name: 'Tivi - Thiết bị nghe nhìn')
+# Category.create(name: 'máy tính-laptop')
+# Category.create(name: 'điện thoại')
+# Category.create(name: 'Trẻ em & Đồ chơi')
+# Category.create(name: 'Sức khỏe')
+8.times do |i|
+  Category.create(name: Faker::Commerce.unique.department)
+end
 puts 'Category'
 
-SubCategory.create(name: 'Đồ dùng nhà bếp', category_id: 1)
-SubCategory.create(name: 'Thiết bị gia đình', category_id: 1)
-SubCategory.create(name: 'Máy giặt', category_id: 1)
-SubCategory.create(name: 'Tủ lạnh', category_id: 1)
-SubCategory.create(name: 'Thời trang nữ', category_id: 2)
-SubCategory.create(name: 'Thời trang nam', category_id: 2)
-SubCategory.create(name: 'Phụ kiện', category_id: 2)
+# SubCategory.create(name: 'Đồ dùng nhà bếp', category_id: 1)
+# SubCategory.create(name: 'Thiết bị gia đình', category_id: 1)
+# SubCategory.create(name: 'Máy giặt', category_id: 1)
+# SubCategory.create(name: 'Tủ lạnh', category_id: 1)
+# SubCategory.create(name: 'Thời trang nữ', category_id: 2)
+# SubCategory.create(name: 'Thời trang nam', category_id: 2)
+# SubCategory.create(name: 'Phụ kiện', category_id: 2)
+15.times do |i|
+  SubCategory.create(name: Faker::Commerce.unique.department,
+                     category_id: Category.all.ids[rand(Category.count)])
+end
 puts 'SubCategory'
 
 10.times do |i|
@@ -91,12 +98,12 @@ puts 'Shop'
 category = ['Category', 'SubCategory']
 puts category[0]
 puts category[1]
-50.times do |i|
+200.times do |i|
   Product.create(
-    name: FFaker::Book.title,
+    name: Faker::Commerce.unique.product_name,
     producer: FFaker::Company.name,
     price: rand(10..50),
-    description: FFaker::Book.description,
+    description: FFaker::Lorem.paragraphs,
     quantity: rand(0..200),
     categorical_type: category[rand(0..1)],
     categorical_id: SubCategory.all.ids[rand(SubCategory.count)],
@@ -104,29 +111,29 @@ puts category[1]
 end
 puts 'Product'
 
-100.times do |i|
+300.times do |i|
   Comment.create(
     user_id: User.all.ids[rand(User.count)],
     product_id: Product.all.ids[rand(Product.count)],
-    content: "Good #{i}")
+    content: FFaker::Lorem.sentences)
 end
 puts 'Comment'
 
-100.times do |i|
+150.times do |i|
   Image.create(
-    url: 'http://www.insightvision.biz/sites/default/files/styles/product_thumb_220x280px/public/default_images/thumbnail-default.jpg?itok=71fjNhNx',
+    url: Faker::Avatar.image("my-own-slug#{i}", "600x800", "png","set4"),
     product_id: Product.all.ids[rand(Product.count)])
 end
 puts 'Image'
 
-70.times do |i|
+100.times do |i|
   DeliveryOrder.create(
-    total_price: 5000000,
+    total_price: rand(40..100),
     user_id: User.all.ids[rand(User.count)])
 end
 puts 'DeliveryOrder'
 
-70.times do |i|
+200.times do |i|
   ProductsDeliveryOrder.create(
     product_id: Product.all.ids[rand(Product.count)],
     delivery_order_id: DeliveryOrder.all.ids[rand(DeliveryOrder.count)],
@@ -134,13 +141,13 @@ puts 'DeliveryOrder'
 end
 puts 'ProductsDeliveryOrder'
 
-70.times do |i|
+100.times do |i|
   PurchaseOrder.create(
     supplier: FFaker::Company.name)
 end
 puts 'PurchaseOrder'
 
-70.times do |i|
+200.times do |i|
   ProductsPurchaseOrder.create(
     product_id: Product.all.ids[rand(Product.count)],
     purchase_order_id: PurchaseOrder.all.ids[rand(PurchaseOrder.count)],
