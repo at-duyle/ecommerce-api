@@ -8,6 +8,7 @@ class ResetPasswordController < ApplicationController
       user.skip_password_validation = true
       if user.update_attributes(reset_token: SecureRandom.hex(10),
                                 reset_send_at: Time.now)
+        ResetPasswordMailer.reset_password_email(user).deliver_now
         message = { message: 'Please check your email!' }
         render json: message
       end
