@@ -1,4 +1,4 @@
-class RegisterPasswordController < ApplicationController
+class RegisterConfirmController < ApplicationController
   def update
     user = User.find_by(confirm_token: params[:id])
     if user.blank?
