@@ -17,3 +17,5 @@
 
 /config/application.yml
 .erdconfig
+dump.rdb
+latest.dump

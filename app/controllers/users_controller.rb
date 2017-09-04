@@ -10,7 +10,6 @@ class UsersController < ApplicationController
   end
 
   def create
-    register_params
     user = User.create(register_params.merge(confirm_send_at: Time.now,
                                              confirm_token: SecureRandom.hex(10)))
     if user.errors.blank?
