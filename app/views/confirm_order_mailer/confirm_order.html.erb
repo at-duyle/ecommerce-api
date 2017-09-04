@@ -1,0 +1,52 @@
+<table>
+  <caption>Your Orders</caption>
+  <thead>
+    <tr>
+      <th>No.</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Quantity</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% total = 0 %>
+    <% for i in 0...@list_product.size do %>
+    <tr>
+      <td><%= i + 1 %></td>
+      <td><%= @list_product[i].name %></td>
+      <td><%= @list_product[i].price %></td>
+      <% quantity = JSON.parse(@cart_product)[i]['quantity'] %>
+      <td><%= quantity %></td>
+      <% total += @list_product[i].price.to_f * quantity.to_f %>
+    </tr>
+    <% end %>
+    <tr>
+      <td colspan="4">Total: $<%= total %></td>
+    </tr>
+  </tbody>
+</table>
+
+<% if !@warning.nil? %>
+<table>
+  <caption>Products are out of stock</caption>
+  <thead>
+    <tr>
+      <th>No.</th>
+      <th>Name</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% total = 0 %>
+    <% for i in 0...@warning.size do %>
+    <tr>
+      <td><%= i + 1 %></td>
+      <td><%= @warning[i].name %></td>
+      <td><%= @warning[i].price %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>
+
+<p>Items in your order may ship separately.</p>

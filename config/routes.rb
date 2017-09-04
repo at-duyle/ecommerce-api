@@ -7,7 +7,7 @@ Rails.application.routes.draw do
       put 'password'
       patch 'password'
     end
-    resources :delivery_orders, only: %i[index]
+    resources :delivery_orders, only: %i[index create]
   end
 
   resources :categories, only: %i[index] do
