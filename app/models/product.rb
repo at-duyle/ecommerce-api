@@ -34,6 +34,9 @@ class Product < ApplicationRecord
   belongs_to :categorical, polymorphic: true
   belongs_to :shop
 
+  # ==============Attributes================
+  attr_accessor :message
+
   # ==============Friendly_url================
   extend FriendlyId
   friendly_id :name, use: :slugged

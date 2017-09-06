@@ -20,6 +20,9 @@ Rails.application.routes.draw do
 
   resources :products, only: %i[index show] do
     resources :comments, only: %i[create]
+    member do
+      get 'check_quantity/:quantity', action: :check_quantity
+    end
   end
   
   resources :products_best_seller, only: %i[index]
