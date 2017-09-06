@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     member do
       put 'password'
       patch 'password'
+      put 'confirm_token'
+      patch 'confirm_token'
     end
     resources :delivery_orders, only: %i[index create]
   end

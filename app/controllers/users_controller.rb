@@ -54,6 +54,17 @@ class UsersController < ApplicationController
     end
   end
 
+  def confirm_token
+    user = User.find(params[:id])
+    user.skip_password_validation = true
+    user.update_attributes(confirm_token: SecureRandom.hex(10), confirm_send_at: Time.now)
+    RegisterMailer.welcome_email(user).deliver_now
+    render json: { message: 'Please check your email!' }
+  rescue
+    error = { errors: 'User not found' }
+    render json: error, status: 404
+  end
+
   private
 
   def register_params
