@@ -14,7 +14,7 @@ class ProductsController < ApplicationController
 
   def check_quantity
     product = Product.friendly.find(params[:id])
-    if product.quantity.equal? 0
+    if product.quantity.eql? 0
       product.message = "#{product.name} are out of stock"
     elsif product.quantity < params[:quantity].to_i
       product.message = "#{product.name} have only #{product.quantity} product(s)"
