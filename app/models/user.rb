@@ -27,6 +27,7 @@ class User < ApplicationRecord
   has_many :comments
   has_many :products, through: :comments
   has_many :delivery_orders
+  has_one :cart
 
   # ================ENUMS=====================
   enum gender: %w[male female other]

@@ -36,4 +36,6 @@ Rails.application.routes.draw do
   resources :register_confirm, only: %i[update]
 
   resources :reset_password, only: %i[create update]
+
+  resources :carts, only: %i[show create update destroy]
 end
