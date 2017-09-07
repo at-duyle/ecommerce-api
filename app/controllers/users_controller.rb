@@ -13,8 +13,8 @@ class UsersController < ApplicationController
     user = User.create(register_params.merge(confirm_send_at: Time.now,
                                              confirm_token: SecureRandom.hex(10)))
     if user.errors.blank?
-      RegisterMailer.welcome_email(user).deliver_now
-      # RegisterMailer.welcome_email(user).deliver_later
+      # RegisterMailer.welcome_email(user).deliver_now
+      RegisterMailer.welcome_email(user).deliver_later
       render json: user, serializer: Users::ShowUserSerializer
     else
       errors = { errors: user.errors.full_messages }
@@ -58,7 +58,8 @@ class UsersController < ApplicationController
     user = User.find(params[:id])
     user.skip_password_validation = true
     user.update_attributes(confirm_token: SecureRandom.hex(10), confirm_send_at: Time.now)
-    RegisterMailer.welcome_email(user).deliver_now
+    # RegisterMailer.welcome_email(user).deliver_now
+    RegisterMailer.welcome_email(user).deliver_later
     render json: { message: 'Please check your email!' }
   rescue
     error = { errors: 'User not found' }
