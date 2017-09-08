@@ -1,6 +1,11 @@
 class CommentsController < ApplicationController
   before_action :set_user, only: %i[create]
 
+  def index
+    comments = Comment.where(product_id: params[:product_id])
+    render json: comments, each_serializer: Comments::CommentsSerializer
+  end
+
   def create
     if @current_user.blank?
       error = { errors: 'Please login!' }
