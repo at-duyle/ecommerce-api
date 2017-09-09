@@ -1,4 +1,6 @@
 class ProductsController < ApplicationController
+  before_action :set_user, only: %i[check_permission]
+
   def index
     products = Product.includes(:images).where(available: true)
     render json: products, each_serializer: Products::ProductsSerializer
@@ -36,5 +38,9 @@ class ProductsController < ApplicationController
       message = order.empty? ? { message: 'Let buy it to review' } : { message: 'ok' }
       render json: message
     end
+  end
+
+  def set_user
+    @current_user = current_user
   end
 end
