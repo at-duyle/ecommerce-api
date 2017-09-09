@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     resources :comments, only: %i[create index]
     member do
       get 'check_quantity/:quantity', action: :check_quantity
+      get 'check_permission', action: :check_permission
     end
   end
   
