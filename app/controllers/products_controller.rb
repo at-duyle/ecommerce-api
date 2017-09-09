@@ -23,4 +23,18 @@ class ProductsController < ApplicationController
                       end
     render json: product, serializer: Products::ProductCartSerializer
   end
+
+  def check_permission
+    if @current_user.blank?
+      error = { errors: 'Please login!' }
+      render json: error, status: 401
+    else
+      product = Product.friendly.find(params[:id])
+      order = DeliveryOrder.joins(:products_delivery_orders)
+                           .where('delivery_orders.user_id = ? and products_delivery_orders.product_id = ?',
+                                  @current_user.id, product.id)
+      message = order.empty? ? { message: 'Let buy it to review' } : { message: 'ok' }
+      render json: message
+    end
+  end
 end
