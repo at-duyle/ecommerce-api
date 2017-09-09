@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170906204619) do
+ActiveRecord::Schema.define(version: 20170908105247) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,7 +66,12 @@ ActiveRecord::Schema.define(version: 20170906204619) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "status", default: 0
-    t.float "total_price", default: 5000000.0
+    t.float "total_price"
+    t.string "city"
+    t.string "district"
+    t.string "ward"
+    t.string "address"
+    t.string "phone"
     t.index ["user_id"], name: "index_delivery_orders_on_user_id"
   end
 
@@ -167,6 +172,9 @@ ActiveRecord::Schema.define(version: 20170906204619) do
     t.datetime "updated_at", null: false
     t.boolean "available", default: true
     t.string "slug"
+    t.string "city"
+    t.string "district"
+    t.string "ward"
     t.index ["slug"], name: "index_users_on_slug", unique: true
   end
 

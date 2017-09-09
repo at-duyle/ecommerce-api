@@ -9,17 +9,17 @@
 
 20.times do |i|
   Admin.create(username: Faker::Internet.unique.user_name,
-              password: '123456',
-              email: Faker::Internet.unique.email,
-              name: Faker::Name.name,
-              gender: rand(0..2),
-              role: rand(0..2),
-              auth_token: rand(100000..999999),
-              confirm_send_at: Time.now(),
-              confirm_at: Time.now(),
-              confirm_token: rand(100000..999999),
-              reset_send_at: Time.now(),
-              reset_token: rand(100000..999999),)
+    password: '123456',
+    email: Faker::Internet.unique.email,
+    name: Faker::Name.name,
+    gender: rand(0..2),
+    role: rand(0..2),
+    auth_token: rand(100000..999999),
+    confirm_send_at: Time.now(),
+    confirm_at: Time.now(),
+    confirm_token: rand(100000..999999),
+    reset_send_at: Time.now(),
+    reset_token: rand(100000..999999),)
 end
 puts 'Admin'
 
@@ -27,35 +27,41 @@ puts 'Admin'
   id = rand(0..2)
   email = Faker::Internet.email
   User.create!(username: Faker::Internet.unique.user_name,
-              password: '123456',
-              password_confirmation: '123456',
-              name: Faker::Name.name,
-              email: "#{email}",
-              gender: id,
-              address: FFaker::AddressBR.full_address,
-              description: FFaker::DizzleIpsum.phrases,
-              auth_token: rand(100000..999999),
-              confirm_send_at: Time.now(),
-              confirm_at: Time.now(),
-              confirm_token: rand(100000..999999),
-              reset_send_at: Time.now(),
-              reset_token: rand(100000..999999))
+    password: '123456',
+    password_confirmation: '123456',
+    name: Faker::Name.name,
+    email: "#{email}",
+    gender: id,
+    city: '35-Đà Nẵng',
+    district: '374-Quận Thanh Khê',
+    ward: '10412-Phường Chính Gián',
+    address: FFaker::AddressBR.street_address,
+    description: FFaker::DizzleIpsum.phrases,
+    auth_token: rand(100000..999999),
+    confirm_send_at: Time.now(),
+    confirm_at: Time.now(),
+    confirm_token: rand(100000..999999),
+    reset_send_at: Time.now(),
+    reset_token: rand(100000..999999))
 end
 
 User.create!(username: 'duy.le',
-              password: '123456',
-              password_confirmation: '123456',
-              name: 'Lê Ngọc Duy',
-              email: 'ngocduy307@gmail.com',
-              gender: 0,
-              address: '193 Nguyễn Lương Bằng - Đà Nẵng',
-              description: FFaker::DizzleIpsum.phrases,
-              auth_token: rand(100000..999999),
-              confirm_send_at: Time.now(),
-              confirm_at: Time.now(),
-              confirm_token: rand(100000..999999),
-              reset_send_at: Time.now(),
-              reset_token: rand(100000..999999))
+  password: '123456',
+  password_confirmation: '123456',
+  name: 'Lê Ngọc Duy',
+  email: 'ngocduy307@gmail.com',
+  gender: 0,
+  city: '35-Đà Nẵng',
+  district: '374-Quận Thanh Khê',
+  ward: '10412-Phường Chính Gián',
+  address: '130 Điện Biên Phủ',
+  description: FFaker::DizzleIpsum.phrases,
+  auth_token: rand(100000..999999),
+  confirm_send_at: Time.now(),
+  confirm_at: Time.now(),
+  confirm_token: rand(100000..999999),
+  reset_send_at: Time.now(),
+  reset_token: rand(100000..999999))
 puts 'User'
 
 # Category.create(name: 'điện gia dụng - điện lạnh')
@@ -79,7 +85,7 @@ puts 'Category'
 # SubCategory.create(name: 'Phụ kiện', category_id: 2)
 15.times do |i|
   SubCategory.create(name: Faker::Commerce.unique.department,
-                     category_id: Category.all.ids[rand(Category.count)])
+   category_id: Category.all.ids[rand(Category.count)])
 end
 puts 'SubCategory'
 
@@ -96,8 +102,6 @@ end
 puts 'Shop'
 
 category = ['Category', 'SubCategory']
-puts category[0]
-puts category[1]
 200.times do |i|
   Product.create(
     name: Faker::Commerce.unique.product_name,
@@ -127,19 +131,41 @@ end
 puts 'Image'
 
 100.times do |i|
-  DeliveryOrder.create(
+  order = DeliveryOrder.create(
     total_price: rand(40..100),
-    user_id: User.all.ids[rand(User.count)])
+    user_id: User.all.ids[rand(User.count)],
+    city: '35-Đà Nẵng',
+    district: '374-Quận Thanh Khê',
+    ward: '10412-Phường Chính Gián',
+    address: FFaker::AddressBR.street_address,
+    phone: '01210321114')
+  sum = 0
+  5.times do |i|
+    product_order = ProductsDeliveryOrder.create(
+      product_id: Product.all.ids[rand(Product.count)],
+      delivery_order_id: order.id,
+      quantity: rand(5..50))
+    sum += product_order.quantity * Product.find(product_order.product_id).price
+  end
+  puts 'ProductsDeliveryOrder'
+end
+order = DeliveryOrder.create(
+  total_price: rand(40..100),
+  user_id: 51,
+  city: '35-Đà Nẵng',
+  district: '374-Quận Thanh Khê',
+  ward: '10412-Phường Chính Gián',
+  address: FFaker::AddressBR.street_address,
+  phone: '01210321114')
+sum = 0
+5.times do |i|
+  product_order = ProductsDeliveryOrder.create(
+    product_id: Product.all.ids[rand(Product.count)],
+    delivery_order_id: order.id,
+    quantity: rand(5..50))
+  sum += product_order.quantity * Product.find(product_order.product_id).price
 end
 puts 'DeliveryOrder'
-
-200.times do |i|
-  ProductsDeliveryOrder.create(
-    product_id: Product.all.ids[rand(Product.count)],
-    delivery_order_id: DeliveryOrder.all.ids[rand(DeliveryOrder.count)],
-    quantity: rand(5..50))
-end
-puts 'ProductsDeliveryOrder'
 
 100.times do |i|
   PurchaseOrder.create(
