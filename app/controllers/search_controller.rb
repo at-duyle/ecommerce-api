@@ -1,6 +1,6 @@
 class SearchController < ApplicationController
   def index
-    products = Product.includes(:images).where('name like ?', "%#{params[:q]}%")
+    products = Product.includes(:images).where('LOWER(name) like ?', "%#{params[:q].downcase}%")
     if !products.blank?
       render json: products, each_serializer: Products::ProductsSerializer
     else

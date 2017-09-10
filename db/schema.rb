@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(version: 20170908105247) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "status", default: 0
-    t.float "total_price"
+    t.float "total_price", default: 5000000.0
     t.string "name"
     t.string "city"
     t.string "district"
