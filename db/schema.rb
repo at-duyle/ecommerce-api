@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 20170908105247) do
     t.datetime "updated_at", null: false
     t.integer "status", default: 0
     t.float "total_price"
+    t.string "name"
     t.string "city"
     t.string "district"
     t.string "ward"

@@ -152,6 +152,7 @@ end
 order = DeliveryOrder.create(
   total_price: rand(40..100),
   user_id: 51,
+  name: Faker::Name.name,
   city: '35-Đà Nẵng',
   district: '374-Quận Thanh Khê',
   ward: '10412-Phường Chính Gián',

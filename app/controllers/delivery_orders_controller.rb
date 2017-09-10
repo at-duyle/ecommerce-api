@@ -12,7 +12,9 @@ class DeliveryOrdersController < ApplicationController
   end
 
   def create
-    products = deliver_order_params[:products]
+    cart = Cart.find_by(user_id: @current_user.id)
+    products = JSON.parse(cart.cart)
+    # products = deliver_order_params[:products]
     list_products = []
     shop_ids = []
     order_ids = []
@@ -20,8 +22,8 @@ class DeliveryOrdersController < ApplicationController
     warning = []
     ActiveRecord::Base.transaction do
       products.each_with_index do |product, index|
-        product_temp = Product.friendly.find(product[:slug])
-        if product[:quantity].to_i > product_temp.quantity.to_i
+        product_temp = Product.friendly.find(product['slug'])
+        if product['quantity'].to_i > product_temp.quantity.to_i
           warning.push(product_temp)
           products.delete(index)
         else
@@ -29,7 +31,13 @@ class DeliveryOrdersController < ApplicationController
           shop_id = shop_ids.find_index(product_temp.shop_id)
           if shop_id.nil?
             shop_ids.push(product_temp.shop_id)
-            order = DeliveryOrder.create(user_id: @current_user.id)
+            order = DeliveryOrder.create(user_id: @current_user.id,
+                                         name: deliver_order_params[:name],
+                                         phone: deliver_order_params[:phone],
+                                         city: deliver_order_params[:city],
+                                         district: deliver_order_params[:district],
+                                         ward: deliver_order_params[:ward],
+                                         address: deliver_order_params[:address])
             order_ids.push(order.id)
             total = product_temp.price.to_f * product[:quantity].to_f
             total_orders.push(total)
@@ -48,9 +56,12 @@ class DeliveryOrdersController < ApplicationController
             DeliveryOrder.update(e, total_price: total_orders[id])
           end
         end
+        # Cart.delete(user_id: @current_user.id)
       end
+      # ConfirmOrderMailer.confirm_order(@current_user, list_products, products.to_json, warning).deliver_now
       ConfirmOrderMailer.confirm_order(@current_user, list_products, products.to_json, warning).deliver_later
       render json: { message: 'Please check your email to comfirm your order.', warning: warning }
+      cart.delete
     end
   rescue StandardError => e
     render json: { errors: e.message }, status: 500
@@ -59,7 +70,7 @@ class DeliveryOrdersController < ApplicationController
   private
 
   def deliver_order_params
-    params.require(:cart).permit(products: %i[slug quantity])
+    params.require(:cart).permit(:name, :city, :district, :ward, :address, :phone)
   end
 
   def set_user
