@@ -1,3 +1,3 @@
 class Admins::PartnersSerializer < ActiveModel::Serializer
-  attributes :id, :username, :email, :name, :gender, :role
+  attributes :id, :username, :email, :name
 end
