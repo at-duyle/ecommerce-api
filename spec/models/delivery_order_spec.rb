@@ -8,6 +8,7 @@
 #  updated_at  :datetime         not null
 #  status      :integer          default("ordered")
 #  total_price :float
+#  name        :string
 #  city        :string
 #  district    :string
 #  ward        :string
