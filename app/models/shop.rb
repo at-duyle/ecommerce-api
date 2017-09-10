@@ -3,15 +3,17 @@
 # Table name: shops
 #
 #  id           :integer          not null, primary key
-#  name         :string(255)
-#  address      :string(255)
-#  phone_number :string(255)
-#  latitude     :float(24)
-#  longitude    :float(24)
+#  name         :string
+#  address      :string
+#  phone_number :string
+#  logo         :string
+#  latitude     :float
+#  longitude    :float
 #  admin_id     :integer
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  available    :boolean          default(TRUE)
+#  slug         :string
 #
 
 class Shop < ApplicationRecord

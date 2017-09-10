@@ -2,12 +2,17 @@
 #
 # Table name: delivery_orders
 #
-#  id         :integer          not null, primary key
-#  user_id    :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  slug       :string(255)
-#  status     :integer          default(0)
+#  id          :integer          not null, primary key
+#  user_id     :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  status      :integer          default("ordered")
+#  total_price :float
+#  city        :string
+#  district    :string
+#  ward        :string
+#  address     :string
+#  phone       :string
 #
 
 require 'rails_helper'

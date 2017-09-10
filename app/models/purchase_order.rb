@@ -3,7 +3,7 @@
 # Table name: purchase_orders
 #
 #  id         :integer          not null, primary key
-#  supplier   :string(255)
+#  supplier   :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  available  :boolean          default(TRUE)

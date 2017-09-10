@@ -3,17 +3,17 @@
 # Table name: products
 #
 #  id               :integer          not null, primary key
-#  name             :string(255)
-#  producer         :string(255)
-#  price            :float(24)
+#  name             :string
+#  producer         :string
+#  price            :float
 #  quantity         :integer
-#  description      :text(65535)
-#  categorical_type :string(255)
+#  description      :text
+#  categorical_type :string
 #  categorical_id   :integer
 #  shop_id          :integer
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
-#  slug             :string(255)
+#  slug             :string
 #  available        :boolean          default(TRUE)
 #
 
