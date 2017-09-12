@@ -14,12 +14,11 @@
     name: Faker::Name.name,
     gender: rand(0..2),
     role: rand(0..2),
-    auth_token: rand(100000..999999),
-    confirm_send_at: Time.now(),
-    confirm_at: Time.now(),
-    confirm_token: rand(100000..999999),
-    reset_send_at: Time.now(),
-    reset_token: rand(100000..999999),)
+    confirmation_sent_at: Time.now(),
+    confirmed_at: Time.now(),
+    confirmation_token: rand(100000..999999),
+    reset_password_sent_at: Time.now(),
+    reset_password_token: rand(100000..999999),)
 end
 puts 'Admin'
 
