@@ -88,18 +88,6 @@ puts 'Category'
 end
 puts 'SubCategory'
 
-10.times do |i|
-  Shop.create(
-    name: FFaker::Company.name,
-    address: FFaker::Address.street_address,
-    phone_number: FFaker::PhoneNumber.phone_number,
-    logo: Faker::Company.logo,
-    latitude: 16.069815,
-    longitude: 108.207000,
-    admin_id: Admin.all.ids[rand(Admin.count)])
-end
-puts 'Shop'
-
 category = ['Category', 'SubCategory']
 200.times do |i|
   Product.create(

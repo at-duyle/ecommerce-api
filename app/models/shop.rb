@@ -18,7 +18,8 @@
 
 class Shop < ApplicationRecord
   # =============Association=================
-  belongs_to :admin
+  has_many :admins
+  has_one :admin
   has_many :products
 
   # ==============Friendly_url================

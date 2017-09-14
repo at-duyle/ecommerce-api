@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20170908105247) do
     t.string "email"
     t.string "name"
     t.integer "gender"
-    t.integer "role", default: 2
+    t.integer "role"
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
@@ -29,12 +29,14 @@ ActiveRecord::Schema.define(version: 20170908105247) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.bigint "manager_id"
+    t.bigint "shop_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "available", default: true
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["manager_id"], name: "index_admins_on_manager_id"
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+    t.index ["shop_id"], name: "index_admins_on_shop_id"
   end
 
   create_table "carts", force: :cascade do |t|
@@ -138,12 +140,10 @@ ActiveRecord::Schema.define(version: 20170908105247) do
     t.string "logo"
     t.float "latitude"
     t.float "longitude"
-    t.bigint "admin_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "available", default: true
     t.string "slug"
-    t.index ["admin_id"], name: "index_shops_on_admin_id"
     t.index ["slug"], name: "index_shops_on_slug", unique: true
   end
 
@@ -181,6 +181,7 @@ ActiveRecord::Schema.define(version: 20170908105247) do
     t.index ["slug"], name: "index_users_on_slug", unique: true
   end
 
+  add_foreign_key "admins", "shops"
   add_foreign_key "carts", "users"
   add_foreign_key "comments", "products"
   add_foreign_key "comments", "users"
@@ -191,6 +192,5 @@ ActiveRecord::Schema.define(version: 20170908105247) do
   add_foreign_key "products_delivery_orders", "products"
   add_foreign_key "products_purchase_orders", "products"
   add_foreign_key "products_purchase_orders", "purchase_orders"
-  add_foreign_key "shops", "admins"
   add_foreign_key "sub_categories", "categories"
 end
