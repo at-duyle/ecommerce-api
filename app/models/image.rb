@@ -3,7 +3,7 @@
 # Table name: images
 #
 #  id         :integer          not null, primary key
-#  url        :string
+#  url        :text
 #  product_id :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null

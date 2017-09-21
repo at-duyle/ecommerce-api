@@ -9,7 +9,6 @@
 #  logo         :string
 #  latitude     :float
 #  longitude    :float
-#  admin_id     :integer
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  available    :boolean          default(TRUE)
