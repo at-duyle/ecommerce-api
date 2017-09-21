@@ -23,6 +23,8 @@ class CommentsController < ApplicationController
     end
   end
 
+  private
+
   def set_user
     @current_user = current_user
   end

@@ -9,7 +9,6 @@
 #  logo         :string
 #  latitude     :float
 #  longitude    :float
-#  admin_id     :integer
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  available    :boolean          default(TRUE)
@@ -21,6 +20,9 @@ class Shop < ApplicationRecord
   has_many :admins
   has_one :admin
   has_many :products
+
+  # ================Validates=====================
+  validates_format_of :phone_number, with: /\A0(1\d{9}|9\d{8})\z/
 
   # ==============Friendly_url================
   extend FriendlyId
