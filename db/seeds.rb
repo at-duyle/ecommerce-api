@@ -6,21 +6,59 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-
-# 20.times do |i|
-#   Admin.create!(username: Faker::Internet.unique.user_name,
-#     password: '123456',
-#     email: Faker::Internet.unique.email,
-#     name: Faker::Name.name,
-#     gender: rand(0..2),
-#     role: rand(0..2),
-#     confirmation_sent_at: Time.now(),
-#     confirmed_at: Time.now(),
-#     confirmation_token: rand(100000..999999),
-#     reset_password_sent_at: Time.now(),
-#     reset_password_token: rand(100000..999999),)
-# end
-# puts 'Admin'
+images =[
+    "image/upload/v1505908173/acjrxjgswsazata03d5h.png",
+    "image/upload/v1505908168/uan9i2ljwxmljc6fi85z.png",
+    "image/upload/v1505908162/pgpyfsoy4vvaiskqdt5f.png",
+    "image/upload/v1505908157/j3azz686roeufq7rleis.png",
+    "image/upload/v1505908152/iwnte6lvtrh93pt0kdsb.png",
+    "image/upload/v1505908148/ubosfmip9ntllarau8jj.png",
+    "image/upload/v1505908142/eitfvzsglbto0xnawhhf.png",
+    "image/upload/v1505908138/qmw8ncltud16mlkz57dr.png",
+    "image/upload/v1505908133/qdzze1nlnq3hzv8sfcip.png",
+    "image/upload/v1505908129/msvgh4j2ggiknab3o1ga.png",
+    "image/upload/v1505908125/i3igdbmng0dpifxh0wjb.png",
+    "image/upload/v1505908120/taf8ijl9kdrxaaitivrf.png",
+    "image/upload/v1505908116/yy37gw5hvfpdcyjjakvw.png",
+    "image/upload/v1505908111/jz3optyrqowo9ylv3zfi.png",
+    "image/upload/v1505908106/yyyqqrmrh1bszk0duwwl.png",
+    "image/upload/v1505908101/r03esjlxwgcocvfpyqsd.png",
+    "image/upload/v1505908094/q43nsa6erlp7sym2j4dz.png",
+    "image/upload/v1505908085/xcukno93z0ogrkshoypk.png",
+    "image/upload/v1505908080/x1yogjdnqqlpdfzft4xs.png",
+    "image/upload/v1505908074/ecx8oobrablr28ltn1xn.png",
+    "image/upload/v1505908068/sfsowcssisv4pizfdxuh.png",
+    "image/upload/v1505908063/xh0g6fttcafwsalba1qp.png",
+    "image/upload/v1505908057/jifcna44ktrjsltuovpn.png",
+    "image/upload/v1505908050/ejn1mmhkdzyb9yiikwzo.png",
+    "image/upload/v1505908045/ur0ycy4gvcnqjah0fxnk.png",
+    "image/upload/v1505908041/fc67gmkj0vd74dpqxgnk.png",
+    "image/upload/v1505908036/ucke1gntdlkxzmxpzox3.png",
+    "image/upload/v1505908032/yvgidu0qqohp6ftpvpvr.png",
+    "image/upload/v1505908027/p1cpzimnqlwpwdlm7jkq.png",
+    "image/upload/v1505908022/d9icptgtxskiptkflq1m.png",
+    "image/upload/v1505908017/dtcjxmk6w4h5hhok13qi.png",
+    "image/upload/v1505908012/c0zrcginl3xtldd9wao6.png",
+    "image/upload/v1505908007/e0w3xyhbfxglgh5qxnhl.png",
+    "image/upload/v1505908002/a1z4vctf5zzq52d0klvk.png",
+    "image/upload/v1505907997/b4iueimyqmiytnz0hn2g.png",
+    "image/upload/v1505907989/qkqrqco7up9vb1r16dt9.png",
+    "image/upload/v1505907980/vf8ruakmxwiyv4ok0gwq.png",
+    "image/upload/v1505907966/qwtdg7jqylxjjeewpdyw.png",
+    "image/upload/v1505907957/m7lqhjqecpmhkpb7nlpt.png",
+    "image/upload/v1505907953/t8ikrqmurrnavm5juyrj.png",
+    "image/upload/v1505907947/taudyfoqyy2dzrugjxmk.png",
+    "image/upload/v1505907942/jfdhxoc5wokoepu2yx8o.png",
+    "image/upload/v1505907937/dhtqduhwgtslqcacft2c.png",
+    "image/upload/v1505907933/ijh03rcmvesuxwpsjubj.png",
+    "image/upload/v1505907928/p8ipzgm9znuxqnsxi7uz.png",
+    "image/upload/v1505907923/itmf4gvii7y3bfscogif.png",
+    "image/upload/v1505907917/jkojbhs49y0sj9skdlm9.png",
+    "image/upload/v1505907912/hrkizwpvxoualxswlhet.png",
+    "image/upload/v1505907908/qfyof6gcyfw0cobumsy4.png",
+    "image/upload/v1505907902/txfta57hxvmgaglubrxd.png",
+    "image/upload/v1505907898/efwx2ba7efmvdcmirwwl.png"
+]
 
 50.times do |i|
   id = rand(0..2)
@@ -110,9 +148,9 @@ puts 'Product'
 end
 puts 'Comment'
 
-150.times do |i|
+300.times do |i|
   Image.create(
-    url: Faker::Avatar.image("my-own-slug#{i}", "600x800", "png","set4"),
+    url: images[i % 51],
     product_id: Product.all.ids[rand(Product.count)])
 end
 puts 'Image'
