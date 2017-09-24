@@ -11,6 +11,7 @@ class CommentsController < ApplicationController
       error = { errors: 'Please login!' }
       render json: error, status: 401
     else
+      product = Product.friendly.find(params[:product_id])
       comment = Comment.create(product_id: product.id,
                                content: params[:comment][:content],
                                user_id: @current_user.id)
